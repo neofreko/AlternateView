@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:xhtml="http://www.w3.org/1999/xhtml"
+xmlns:x="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+version="-//W3C//DTD XHTML 1.1//EN" xml:lang="en">
+<head>
+  <title>I Hate List Grids</title>
+  <!-- XBL bindings CSS -->
+   <link rel="stylesheet"
+       href="chrome://messenger/content/glodaFacetBindings.css"
+       type="text/css"></link>
+   <link rel="stylesheet" media="screen" type="text/css"
+        href="chrome://messenger/skin/tagColors.css"/>
+   <!-- Themes -->
+   <link rel="stylesheet"
+       href="chrome://messenger/skin/glodaFacetView.css"
+       type="text/css"></link>
+       <script src="./date.js"></script>
+        <script src="./overlay.js"></script>
+        <script src="./jquery-1.3.2.js"></script>
+        <script type="application/javascript; e4x=1">
+        //alert(Date.parse('today -7'));
+        function dataHandlerFactory(label, id) {
+          //alert('id:'+id);           
+          var dataHandlerFunc = function (msg) {
+            //alert('data arrives for ID: ' + id);
+                       
+            // prepare container
+            if ($('#messages-'+id).length==0) {
+              //alert('create container for '+id);
+              var container = <div xmlns="http://www.w3.org/1999/xhtml" id="messages-{id}" type="message"><h3>{label}</h3></div>;
+              container.@id = 'messages-'+id;
+              //alert(container.toXMLString());
+              $('#data-column').get(0).appendChild((new DOMParser()).parseFromString(
+                        container.toXMLString(), 'text/xml'
+                    ).documentElement
+              );
+            }
+           function obfuscate(str) {return str.replace(/[a-z]/g, String.fromCharCode('a'.charCodeAt(0)+Math.random()*26)).replace(/[A-Z]/g, String.fromCharCode('A'.charCodeAt(0)+Math.random()*26));}
+           var msg_subject = obfuscate(msg.subject);
+           //var msg_from = obfuscate(msg.from);
+           var frag = <div xmlns="http://www.w3.org/1999/xhtml" class="message">
+                          <div class="message-subject">
+                            {msg_subject}
+                          </div>
+                          <div class="message-date">
+                            {msg.date}
+                          </div>
+                          <!--div class="message-sender">
+                            {msg.from}
+                          </div-->
+                        </div>
+                ;
+                
+            $('#messages-'+id).get(0)
+            .appendChild(
+              (new DOMParser()).parseFromString(
+                        frag.toXMLString(), 'text/xml'
+                    ).documentElement
+            );
+          }
+          
+          return dataHandlerFunc;
+        }
+        
+        function runForestRun() {  
+          alternateview.glodaAction([Date.parse('t'), Date.parse('t+1')], dataHandlerFactory('Today', 'today'));
+          alternateview.glodaAction([Date.parse('yesterday'), Date.parse('t')], dataHandlerFactory('Yesterday', 'yesterday'));          
+        }
+        $(document).ready(runForestRun);
+        </script>
+        <script>
+        //alert('hi xxx');
+        </script>
+</head>
+<body id="body">
+  <div class="table">
+    <div id="main-column">
+      <div id="header">
+        <p>
+        Welcome, Akhmad Fathonih
+        </p>
+        <div id="data-column">
+        </div>          
+      </div>
+    </div>
+  </div>
+</body>
+</html>

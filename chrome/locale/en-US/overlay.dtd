@@ -1,0 +1,8 @@
+<!ENTITY alternateview.label "Your localized menuitem">
+<!ENTITY alternateviewContext.label "Your Menuitem">
+<!ENTITY alternateviewContext.accesskey "Y">
+<!ENTITY alternateviewToolbarButton.label "Your Toolbar Button">
+<!ENTITY alternateviewToolbarButton.tooltip "This is your toolbar button!">
+<!ENTITY alternateviewSidebar.label "Your Sidebar">
+<!ENTITY alternateviewToolbar.name  "example">
+<!ENTITY alternateviewToolbar.label "This is an example toolbar. You can hide it under View &gt; toolbars &gt; &alternateviewToolbar.name;">

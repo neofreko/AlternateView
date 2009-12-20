@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<overlay id="sample" 
+xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<script>
+function runForestRun() {
+  //alert(alternateview);
+  Components.classes['@mozilla.org/appshell/window-mediator;1'].getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("mail:3pane").document.getElementById("tabmail").openTab("contentTab", {contentPage: "chrome://alternateview/content/alternateview.xul?"+Math.random()*9999});  
+}
+</script>
+ <statusbar id="status-bar">
+  <statusbarpanel id="my-panel" label="Hello, World"/>
+  <button oncommand="runForestRun()">
+              <description>Alternate View</description>
+            </button>
+ </statusbar>
+</overlay>

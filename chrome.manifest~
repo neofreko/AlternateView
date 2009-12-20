@@ -1,0 +1,4 @@
+content   alternateview                 chrome/content/
+skin      alternateview   classic/1.0   chrome/skin/
+locale    alternateview   en-US         chrome/locale/en-US/
+
